@@ -1,0 +1,50 @@
+<!--分页 -->
+	<div style="width: 380px; margin: 0 auto; margin-top: 50px;">
+		<ul class="pagination" style="text-align: center; margin-top: 10px;">
+			<!-- 上一页 -->
+			<!-- 判断当前页是否是第一页 -->
+			<c:if test="${pageBean.currentPage==1 }">
+				<li class="disabled">
+					<a href="javascript:void(0);" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</c:if>
+			<c:if test="${pageBean.currentPage!=1 }">
+				<li>
+					<a href="${pageContext.request.contextPath }/productList?currentPage=${pageBean.currentPage-1}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</c:if>	
+			
+			<c:forEach begin="1" end="${pageBean.totalPages }" var="page">
+				<!-- 判断当前页 -->
+				<c:if test="${pageBean.currentPage==page }">
+					<li class="active"><a href="javascript:void(0);">${page}</a></li>
+				</c:if>
+				<c:if test="${pageBean.currentPage!=page }">
+					<li><a href="${pageContext.request.contextPath }/productList?currentPage=${page}">${page}</a></li>
+				</c:if>
+			
+			</c:forEach>
+			
+			<!-- 判断当前页是否是最后一页 -->
+			<c:if test="${pageBean.currentPage==pageBean.totalPages }">
+				<li class="disabled">
+					<a href="javascript:void(0);" aria-label="Next"> 
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</c:if>
+			<c:if test="${pageBean.currentPage!=pageBean.totalPages }">
+				<li>
+					<a href="${pageContext.request.contextPath }/productList?currentPage=${pageBean.currentPage+1}" aria-label="Next"> 
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</c:if>
+		
+		</ul>
+	</div>
+<!-- 分页结束 -->
